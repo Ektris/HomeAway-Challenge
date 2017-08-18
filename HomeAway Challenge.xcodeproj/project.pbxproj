@@ -99,13 +99,10 @@
 		CA44CD611F4793D4009263BE /* HomeAway Challenge */ = {
 			isa = PBXGroup;
 			children = (
-				CA44CD621F4793D4009263BE /* AppDelegate.swift */,
-				CA44CD641F4793D4009263BE /* MasterViewController.swift */,
-				CA44CD661F4793D4009263BE /* DetailViewController.swift */,
-				CA44CD681F4793D5009263BE /* Main.storyboard */,
-				CA44CD6B1F4793D5009263BE /* Assets.xcassets */,
-				CA44CD6D1F4793D5009263BE /* LaunchScreen.storyboard */,
-				CA44CD701F4793D5009263BE /* Info.plist */,
+				CA44CD941F479430009263BE /* Controllers */,
+				CA44CD921F479421009263BE /* Models */,
+				CA44CD931F479426009263BE /* Views */,
+				CA44CD951F47943E009263BE /* Assets */,
 			);
 			path = "HomeAway Challenge";
 			sourceTree = "<group>";
@@ -126,6 +123,41 @@
 				CA44CD861F4793D5009263BE /* Info.plist */,
 			);
 			path = "HomeAway ChallengeUITests";
+			sourceTree = "<group>";
+		};
+		CA44CD921F479421009263BE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CA44CD621F4793D4009263BE /* AppDelegate.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		CA44CD931F479426009263BE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CA44CD6D1F4793D5009263BE /* LaunchScreen.storyboard */,
+				CA44CD681F4793D5009263BE /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		CA44CD941F479430009263BE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CA44CD661F4793D4009263BE /* DetailViewController.swift */,
+				CA44CD641F4793D4009263BE /* MasterViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		CA44CD951F47943E009263BE /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CA44CD701F4793D5009263BE /* Info.plist */,
+				CA44CD6B1F4793D5009263BE /* Assets.xcassets */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -509,6 +541,7 @@
 				CA44CD8B1F4793D5009263BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CA44CD8C1F4793D5009263BE /* Build configuration list for PBXNativeTarget "HomeAway ChallengeTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +550,7 @@
 				CA44CD8E1F4793D5009263BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CA44CD8F1F4793D5009263BE /* Build configuration list for PBXNativeTarget "HomeAway ChallengeUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +559,7 @@
 				CA44CD911F4793D5009263BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
