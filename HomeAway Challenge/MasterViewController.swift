@@ -16,7 +16,8 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Properties
     let searchController = UISearchController(searchResultsController: nil)
     var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
+    var events = [Dictionary<String, Any?>]()
+    let connector = SeatGeekConnector.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,18 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - UISearchResultsUpdating
     
     func updateSearchResults(for searchController: UISearchController) {
+        // Only want to query if text actually entered, otherwise you get everything when search bar given focus
+        if let text = searchController.searchBar.text, text.characters.count > 0 {
+            connector.query(query: searchController.searchBar.text!) { results in
+                self.events = results
+                self.tableView.reloadData()
+            }
+        } else {
+            // Clear results if search bar empty
+            events.removeAll()
+        }
+        
+        self.tableView.reloadData()
     }
 
     // MARK: - Table View
@@ -60,24 +73,15 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return events.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let title = events[indexPath.row]["id"] as! Int
+        cell.textLabel!.text = String(title)
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
     }
 
     // MARK: - Segues
@@ -85,9 +89,9 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+//                let object = objects[indexPath.row] as! NSDate
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
+//                controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }

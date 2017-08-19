@@ -96,7 +96,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tik-oV-pkq">
-                                <rect key="frame" x="0.0" y="231" width="375" height="436"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="gr2-wW-dlS" style="IBUITableViewCellStyleDefault" id="wjs-S0-fdt">
@@ -134,7 +134,7 @@
                             <constraint firstItem="CRB-s2-weG" firstAttribute="leading" secondItem="8CI-b0-L4W" secondAttribute="leading" id="OkL-Kr-WOL"/>
                             <constraint firstAttribute="trailing" secondItem="CRB-s2-weG" secondAttribute="trailing" id="T8P-qf-iXS"/>
                             <constraint firstItem="MFz-en-wdI" firstAttribute="top" secondItem="Tik-oV-pkq" secondAttribute="bottom" id="Uih-Cf-M5L"/>
-                            <constraint firstItem="Tik-oV-pkq" firstAttribute="top" secondItem="CRB-s2-weG" secondAttribute="bottom" constant="123" id="eC6-Y5-ErM"/>
+                            <constraint firstItem="Tik-oV-pkq" firstAttribute="top" secondItem="CRB-s2-weG" secondAttribute="bottom" constant="8" id="eC6-Y5-ErM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Master" id="4KY-Uu-Qk4"/>
