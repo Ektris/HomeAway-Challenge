@@ -26,7 +26,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
+        searchController.searchBar.sizeToFit()// TODO: Fix Search Bar placement
         self.containerView.translatesAutoresizingMaskIntoConstraints = false
         self.containerView.addSubview(searchController.searchBar)
 
@@ -77,11 +77,28 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        let title = events[indexPath.row]["id"] as! Int
-        cell.textLabel!.text = String(title)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EventTableViewCell
+        
+        let event = events[indexPath.row]
+        
+        cell.titleLabel.text = event["title"] as? String
+        cell.locationLabel.text = (event["venue"] as! Dictionary<String, Any>)["display_location"] as? String
+        cell.timeLabel.text = event["datetime_local"] as? String // TODO: Convert to Date to be more readable
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Get more results if available
+        //    If the current number of results is divisible by the page size, then it last pulled down a full page,
+        //    which means another page may be available
+        if (indexPath.row + 1) == events.count, (events.count % SeatGeekConnector.pageSize) == 0 {
+            connector.queryPage(query: searchController.searchBar.text!,
+                                page: ((events.count / SeatGeekConnector.pageSize) + 1)) { results in
+                self.events = self.events + results
+                self.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - Segues
@@ -89,9 +106,9 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-//                let object = objects[indexPath.row] as! NSDate
+                let event = events[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-//                controller.detailItem = object
+                controller.eventDict = event
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }

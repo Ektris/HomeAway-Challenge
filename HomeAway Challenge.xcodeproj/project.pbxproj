@@ -17,6 +17,7 @@
 		CA44CD7A1F4793D5009263BE /* HomeAway_ChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA44CD791F4793D5009263BE /* HomeAway_ChallengeTests.swift */; };
 		CA44CD851F4793D5009263BE /* HomeAway_ChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA44CD841F4793D5009263BE /* HomeAway_ChallengeUITests.swift */; };
 		CAA3E4BB1F48D37F000D06CA /* SeatGeekConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA3E4BA1F48D37F000D06CA /* SeatGeekConnector.swift */; };
+		CAA3E4C01F48F25D000D06CA /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA3E4BE1F48F25D000D06CA /* EventTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		CA44CD841F4793D5009263BE /* HomeAway_ChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAway_ChallengeUITests.swift; sourceTree = "<group>"; };
 		CA44CD861F4793D5009263BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAA3E4BA1F48D37F000D06CA /* SeatGeekConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatGeekConnector.swift; sourceTree = "<group>"; };
+		CAA3E4BE1F48F25D000D06CA /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		EFDA923A2CF667CF528E5EBB /* Pods_HomeAway_Challenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeAway_Challenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -163,8 +165,8 @@
 		CA44CD931F479426009263BE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CA44CD6D1F4793D5009263BE /* LaunchScreen.storyboard */,
-				CA44CD681F4793D5009263BE /* Main.storyboard */,
+				CAA3E4BC1F48F1FB000D06CA /* Storyboards */,
+				CAA3E4BD1F48F204000D06CA /* UITableViewCells */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -185,6 +187,23 @@
 				CA44CD6B1F4793D5009263BE /* Assets.xcassets */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		CAA3E4BC1F48F1FB000D06CA /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CA44CD6D1F4793D5009263BE /* LaunchScreen.storyboard */,
+				CA44CD681F4793D5009263BE /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		CAA3E4BD1F48F204000D06CA /* UITableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				CAA3E4BE1F48F25D000D06CA /* EventTableViewCell.swift */,
+			);
+			name = UITableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,6 +400,7 @@
 				CA44CD671F4793D4009263BE /* DetailViewController.swift in Sources */,
 				CA44CD651F4793D4009263BE /* MasterViewController.swift in Sources */,
 				CAA3E4BB1F48D37F000D06CA /* SeatGeekConnector.swift in Sources */,
+				CAA3E4C01F48F25D000D06CA /* EventTableViewCell.swift in Sources */,
 				CA44CD631F4793D4009263BE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

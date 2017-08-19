@@ -9,16 +9,19 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    // MARK: - Outlets
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
+    // MARK: - Properties
+    var eventDict: Dictionary<String, Any?>? {
+        didSet {
+            self.configureView()
+        }
+    }
+    
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
-            }
+        if let event = self.eventDict {
+            
         }
     }
 
@@ -32,14 +35,4 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    var detailItem: NSDate? {
-        didSet {
-            // Update the view.
-            self.configureView()
-        }
-    }
-
-
 }
-

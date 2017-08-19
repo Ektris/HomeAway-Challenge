@@ -12,9 +12,9 @@ import Alamofire
 class SeatGeekConnector {
     // Create singleton to persist across app
     public static let shared = SeatGeekConnector()
+    public static let pageSize = 10
     
     private let clientId = "ODU2ODIwMXwxNTAzMTE3NTgwLjgy"
-    private var currentPage = 1
     
     private init() {
     }
@@ -33,9 +33,7 @@ class SeatGeekConnector {
                                      "page":page]
         
         Alamofire.request(url, method: .get, parameters: params, headers: nil).responseJSON { response in
-            if let json = response.result.value as? Dictionary<String, Any> {
-                print("JSON: \(json["events"])") // serialized json response
-                
+            if let json = response.result.value as? Dictionary<String, Any> {                
                 if let events = json["events"] as? [Dictionary<String, Any>] {
                     completion(events)
                 }
