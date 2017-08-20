@@ -19,7 +19,7 @@ class SeatGeekConnector {
     private init() {
     }
     
-    // MARK: - Quries
+    // MARK: - Queries
     
     public func query(query: String, completion: @escaping ([Dictionary<String, Any>]) -> ()) {
         queryPage(query: query, page: 1, completion: completion)

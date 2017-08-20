@@ -29,6 +29,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.sizeToFit()// TODO: Fix Search Bar placement
         self.containerView.translatesAutoresizingMaskIntoConstraints = false
         self.containerView.addSubview(searchController.searchBar)
+        self.definesPresentationContext = true
 
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -82,8 +83,16 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let event = events[indexPath.row]
         
         cell.titleLabel.text = event["title"] as? String
+        
         cell.locationLabel.text = (event["venue"] as! Dictionary<String, Any>)["display_location"] as? String
-        cell.timeLabel.text = event["datetime_local"] as? String // TODO: Convert to Date to be more readable
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH.mm.ss"
+        let date = dateFormatter.date(from: event["datetime_local"] as! String)
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm a"
+        cell.timeLabel.text = dateFormatter.string(from: date!)
+        
+        cell.favoriteImageView.isHidden = !Favorites.check(id: event["id"] as! Int)
         
         return cell
     }
@@ -96,7 +105,9 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             connector.queryPage(query: searchController.searchBar.text!,
                                 page: ((events.count / SeatGeekConnector.pageSize) + 1)) { results in
                 self.events = self.events + results
+                let indexPath = self.tableView.indexPathForSelectedRow
                 self.tableView.reloadData()
+                self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
         }
     }
@@ -109,6 +120,11 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let event = events[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.eventDict = event
+                controller.reloadMaster = {
+                    self.tableView.reloadData()
+                    self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                }
+                
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
