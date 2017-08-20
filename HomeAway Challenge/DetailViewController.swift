@@ -10,6 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     // MARK: - Outlets
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -22,6 +23,7 @@ class DetailViewController: UIViewController {
         }
     }
     var reloadMaster:(() -> ())?
+    let connector = SeatGeekConnector.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +39,20 @@ class DetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         if let event = self.eventDict {
-            hideDetails(show: false)
+            hideDetails(false)
             
             self.title = event["title"] as? String
+            
+            if let imgView = self.imageView {
+                let performers = event["performers"] as! [Dictionary<String, Any>]
+                if let imageUrl = performers[0]["image"] as? String {
+                    connector.loadImage(url: imageUrl) { image in
+                        imgView.image = image
+                    }
+                } else {
+                    imgView.removeFromSuperview()
+                }
+            }
             
             if let label = self.dateLabel {
                 let dateFormatter = DateFormatter()
@@ -56,31 +69,34 @@ class DetailViewController: UIViewController {
             if let button = self.favoriteButton {
                 if Favorites.check(id: event["id"] as! Int) {
                     button.image = UIImage(named: "Star_Filled")
-//                    button.tintColor = .yellow
                 } else {
                     button.image = UIImage(named: "Star")
                 }
             }
         } else {
-            hideDetails(show: true)
+            hideDetails(true)
         }
     }
     
-    func hideDetails(show: Bool) {
+    func hideDetails(_ hide: Bool) {
         if self.detailDescriptionLabel != nil {
-            self.detailDescriptionLabel.isHidden = !show
+            self.detailDescriptionLabel.isHidden = !hide
+        }
+        
+        if self.imageView != nil {
+            self.imageView.isHidden = hide
         }
         
         if self.dateLabel != nil {
-            self.dateLabel.isHidden = show
+            self.dateLabel.isHidden = hide
         }
         
         if self.locationLabel != nil {
-            self.locationLabel.isHidden = show
+            self.locationLabel.isHidden = hide
         }
         
         if self.favoriteButton != nil {
-            self.favoriteButton.isEnabled = !show
+            self.favoriteButton.isEnabled = !hide
         }
     }
     
@@ -94,7 +110,6 @@ class DetailViewController: UIViewController {
                 Favorites.remove(id: id)
             } else {
                 self.favoriteButton.image = UIImage(named: "Star_Filled")
-//                self.favoriteButton.tintColor = .yellow
                 Favorites.save(id: id)
             }
             reloadMaster!()

@@ -94,6 +94,23 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.favoriteImageView.isHidden = !Favorites.check(id: event["id"] as! Int)
         
+        // Check for an image of the first given performer
+        cell.tag = indexPath.row
+        let performers = event["performers"] as! [Dictionary<String, Any>]
+        if let imageUrl = performers[0]["image"] as? String {
+            connector.loadImage(url: imageUrl) { image in
+                DispatchQueue.main.async {
+                    // Ensure image is assigned to correct cell, as could have scrolled before data was retrieved,
+                    //     so check tag to see if still the one visible at given path
+                    if let cellToUpdate = tableView.cellForRow(at: indexPath) as? EventTableViewCell, cellToUpdate.tag == indexPath.row {
+                        cellToUpdate.thumbnail.image = image
+                    }
+                }
+            }
+        } else {
+            cell.thumbnail.image = UIImage(named: "Question_Mark")
+        }
+        
         return cell
     }
     

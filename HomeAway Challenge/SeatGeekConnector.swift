@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 
 class SeatGeekConnector {
     // Create singleton to persist across app
@@ -37,6 +38,16 @@ class SeatGeekConnector {
                 if let events = json["events"] as? [Dictionary<String, Any>] {
                     completion(events)
                 }
+            }
+        }
+    }
+    
+    // MARK: - Images
+    
+    public func loadImage(url: String, completion: @escaping (Image) -> ()) {
+        Alamofire.request(url).responseImage { response in            
+            if let image = response.result.value {
+                completion(image)
             }
         }
     }

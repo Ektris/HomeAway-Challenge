@@ -7,4 +7,5 @@ workspace ‘HomeAway Challenge’
 
 target ‘HomeAway Challenge’ do
     pod 'Alamofire', '~> 4.4'
+    pod 'AlamofireImage', '~> 3.1'
 end
