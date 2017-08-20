@@ -8,10 +8,7 @@
 
 import UIKit
 
-class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
-    // MARK: - Outlets
-    @IBOutlet weak var tableView: UITableView!
-    
+class MasterViewController: UITableViewController, UISearchResultsUpdating {    
     // MARK: - Properties
     let searchController = UISearchController(searchResultsController: nil)
     var detailViewController: DetailViewController? = nil
@@ -22,13 +19,13 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         // Add the search bar
-        searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.searchBarStyle = .minimal
+        self.searchController.searchResultsUpdater = self
+        self.searchController.hidesNavigationBarDuringPresentation = false
+        self.searchController.dimsBackgroundDuringPresentation = false
+        self.searchController.searchBar.searchBarStyle = .minimal
         self.navigationItem.titleView = searchController.searchBar
-        searchController.searchBar.sizeToFit()
-        searchController.searchBar.placeholderColor(color: .white)
+        self.searchController.searchBar.sizeToFit()
+        self.searchController.searchBar.placeholderColor(color: .white)
         self.definesPresentationContext = true
 
         if let split = self.splitViewController {
@@ -55,13 +52,13 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func updateSearchResults(for searchController: UISearchController) {
         // Only want to query if text actually entered, otherwise you get everything when search bar given focus
         if let text = searchController.searchBar.text, text.characters.count > 0 {
-            connector.query(query: searchController.searchBar.text!) { results in
+            self.connector.query(query: searchController.searchBar.text!) { results in
                 self.events = results
                 self.tableView.reloadData()
             }
         } else {
             // Clear results if search bar empty
-            events.removeAll()
+            self.events.removeAll()
         }
         
         self.tableView.reloadData()
@@ -69,18 +66,18 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     // MARK: - Table View
 
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.events.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EventTableViewCell
         
-        let event = events[indexPath.row]
+        let event = self.events[indexPath.row]
         
         cell.titleLabel.text = event["title"] as? String
         
@@ -98,7 +95,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.tag = indexPath.row
         let performers = event["performers"] as! [Dictionary<String, Any>]
         if let imageUrl = performers[0]["image"] as? String {
-            connector.loadImage(url: imageUrl) { image in
+            self.connector.loadImage(url: imageUrl) { image in
                 DispatchQueue.main.async {
                     // Ensure image is assigned to correct cell, as could have scrolled before data was retrieved,
                     //     so check tag to see if still the one visible at given path
@@ -114,13 +111,13 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // Get more results if available
         //    If the current number of results is divisible by the page size, then it last pulled down a full page,
         //    which means another page may be available
         if (indexPath.row + 1) == events.count, (events.count % SeatGeekConnector.pageSize) == 0 {
-            connector.queryPage(query: searchController.searchBar.text!,
-                                page: ((events.count / SeatGeekConnector.pageSize) + 1)) { results in
+            self.connector.queryPage(query: searchController.searchBar.text!,
+                                     page: ((events.count / SeatGeekConnector.pageSize) + 1)) { results in
                 self.events = self.events + results
                 let indexPath = self.tableView.indexPathForSelectedRow
                 self.tableView.reloadData()
@@ -134,7 +131,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let event = events[indexPath.row]
+                let event = self.events[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.eventDict = event
                 controller.reloadMaster = {

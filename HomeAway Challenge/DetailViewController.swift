@@ -46,7 +46,7 @@ class DetailViewController: UIViewController {
             if let imgView = self.imageView {
                 let performers = event["performers"] as! [Dictionary<String, Any>]
                 if let imageUrl = performers[0]["image"] as? String {
-                    connector.loadImage(url: imageUrl) { image in
+                    self.connector.loadImage(url: imageUrl) { image in
                         imgView.image = image
                     }
                 } else {
