@@ -10,7 +10,6 @@ import UIKit
 
 class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     // MARK: - Outlets
-    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
@@ -26,9 +25,10 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()// TODO: Fix Search Bar placement
-        self.containerView.translatesAutoresizingMaskIntoConstraints = false
-        self.containerView.addSubview(searchController.searchBar)
+        searchController.searchBar.searchBarStyle = .minimal
+        self.navigationItem.titleView = searchController.searchBar
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.placeholderColor(color: .white)
         self.definesPresentationContext = true
 
         if let split = self.splitViewController {

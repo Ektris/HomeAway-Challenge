@@ -22,14 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         splitViewController.delegate = self
         
         // Set navigation bar colors
-        UINavigationBar.appearance().barTintColor = UIColor(red: 39/255, green: 110/255, blue: 189/255, alpha: 1.0)
+        UINavigationBar.appearance().barTintColor = .haBlue
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         // Set search bar colors
-        UISearchBar.appearance().barTintColor = UIColor(red: 39/255, green: 110/255, blue: 189/255, alpha: 1.0)
+        UISearchBar.appearance().barTintColor = .haBlue
         UISearchBar.appearance().tintColor = .white
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor(red: 39/255, green: 110/255, blue: 189/255, alpha: 1.0)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = .white
         
         // Register empty favorites list
         let userDefaults = UserDefaults.standard

@@ -19,6 +19,8 @@
 		CAA3E4BB1F48D37F000D06CA /* SeatGeekConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA3E4BA1F48D37F000D06CA /* SeatGeekConnector.swift */; };
 		CAA3E4C01F48F25D000D06CA /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA3E4BE1F48F25D000D06CA /* EventTableViewCell.swift */; };
 		CAF9EA251F49083A00E72501 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9EA241F49083A00E72501 /* Favorites.swift */; };
+		CAF9EA271F49EBEE00E72501 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9EA261F49EBEE00E72501 /* UIColor+Custom.swift */; };
+		CAF9EA2A1F49EDFA00E72501 /* UISearchBar+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9EA291F49EDFA00E72501 /* UISearchBar+Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		CAA3E4BA1F48D37F000D06CA /* SeatGeekConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatGeekConnector.swift; sourceTree = "<group>"; };
 		CAA3E4BE1F48F25D000D06CA /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		CAF9EA241F49083A00E72501 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		CAF9EA261F49EBEE00E72501 /* UIColor+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
+		CAF9EA291F49EDFA00E72501 /* UISearchBar+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Color.swift"; sourceTree = "<group>"; };
 		EFDA923A2CF667CF528E5EBB /* Pods_HomeAway_Challenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeAway_Challenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,6 +162,7 @@
 		CA44CD921F479421009263BE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CAF9EA281F49EDDB00E72501 /* Extensions */,
 				CA44CD621F4793D4009263BE /* AppDelegate.swift */,
 				CAA3E4BA1F48D37F000D06CA /* SeatGeekConnector.swift */,
 				CAF9EA241F49083A00E72501 /* Favorites.swift */,
@@ -207,6 +212,15 @@
 				CAA3E4BE1F48F25D000D06CA /* EventTableViewCell.swift */,
 			);
 			name = UITableViewCells;
+			sourceTree = "<group>";
+		};
+		CAF9EA281F49EDDB00E72501 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CAF9EA261F49EBEE00E72501 /* UIColor+Custom.swift */,
+				CAF9EA291F49EDFA00E72501 /* UISearchBar+Color.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,10 +414,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAF9EA271F49EBEE00E72501 /* UIColor+Custom.swift in Sources */,
 				CA44CD671F4793D4009263BE /* DetailViewController.swift in Sources */,
 				CA44CD651F4793D4009263BE /* MasterViewController.swift in Sources */,
 				CAA3E4BB1F48D37F000D06CA /* SeatGeekConnector.swift in Sources */,
 				CAF9EA251F49083A00E72501 /* Favorites.swift in Sources */,
+				CAF9EA2A1F49EDFA00E72501 /* UISearchBar+Color.swift in Sources */,
 				CAA3E4C01F48F25D000D06CA /* EventTableViewCell.swift in Sources */,
 				CA44CD631F4793D4009263BE /* AppDelegate.swift in Sources */,
 			);
