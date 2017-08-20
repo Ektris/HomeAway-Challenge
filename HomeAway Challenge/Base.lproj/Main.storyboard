@@ -166,7 +166,7 @@
                                                     <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                    <integer key="value" value="1"/>
+                                                    <integer key="value" value="100"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
@@ -219,6 +219,9 @@
                     <navigationItem key="navigationItem" id="mnn-QB-cfK"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ZM2-sQ-Xqi">
                         <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshPulled:" destination="xql-pu-dxX" eventType="valueChanged" id="gQc-H4-xaV"/>
+                        </connections>
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OV8-dG-nh4" userLabel="First Responder" sceneMemberID="firstResponder"/>

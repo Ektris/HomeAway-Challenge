@@ -125,7 +125,14 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating {
             }
         }
     }
-
+    
+    // MARK: - Actions
+    
+    @IBAction func refreshPulled(_ sender: UIRefreshControl) {
+        updateSearchResults(for: self.searchController)
+        sender.endRefreshing()
+    }
+    
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
