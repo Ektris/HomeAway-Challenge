@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var venueLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
 
     // MARK: - Properties
@@ -58,12 +59,18 @@ class DetailViewController: UIViewController {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH.mm.ss"
                 let date = dateFormatter.date(from: event["datetime_local"] as! String)
-                dateFormatter.dateFormat = "E, d MMM yyyy HH:mm a"
-                label.text = dateFormatter.string(from: date!)
+                dateFormatter.dateFormat = "E, d MMM yyyy hh:mm a"
+                label.appendAttributedText(text: dateFormatter.string(from:date!), attributes: [NSForegroundColorAttributeName:UIColor.black])
             }
             
             if let label = self.locationLabel {
-                label.text = (event["venue"] as! Dictionary<String, Any>)["display_location"] as? String
+                label.appendAttributedText(text: ((event["venue"] as! Dictionary<String, Any>)["display_location"] as? String)!,
+                                           attributes: [NSForegroundColorAttributeName:UIColor.black])
+            }
+            
+            if let label = self.venueLabel {
+                label.appendAttributedText(text: ((event["venue"] as! Dictionary<String, Any>)["name"] as? String)!,
+                                           attributes: [NSForegroundColorAttributeName:UIColor.black])
             }
             
             if let button = self.favoriteButton {
@@ -93,6 +100,10 @@ class DetailViewController: UIViewController {
         
         if self.locationLabel != nil {
             self.locationLabel.isHidden = hide
+        }
+        
+        if self.venueLabel != nil {
+            self.venueLabel.isHidden = hide
         }
         
         if self.favoriteButton != nil {

@@ -86,7 +86,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH.mm.ss"
         let date = dateFormatter.date(from: event["datetime_local"] as! String)
-        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm a"
+        dateFormatter.dateFormat = "E, d MMM yyyy hh:mm a"
         cell.timeLabel.text = dateFormatter.string(from: date!)
         
         cell.favoriteImageView.isHidden = !Favorites.check(id: event["id"] as! Int)

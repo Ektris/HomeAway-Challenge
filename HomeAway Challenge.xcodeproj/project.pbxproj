@@ -21,6 +21,7 @@
 		CAF9EA251F49083A00E72501 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9EA241F49083A00E72501 /* Favorites.swift */; };
 		CAF9EA271F49EBEE00E72501 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9EA261F49EBEE00E72501 /* UIColor+Custom.swift */; };
 		CAF9EA2A1F49EDFA00E72501 /* UISearchBar+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9EA291F49EDFA00E72501 /* UISearchBar+Color.swift */; };
+		CAF9EA2F1F4A614000E72501 /* UILabel+AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9EA2E1F4A614000E72501 /* UILabel+AttributedText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		CAF9EA241F49083A00E72501 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		CAF9EA261F49EBEE00E72501 /* UIColor+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
 		CAF9EA291F49EDFA00E72501 /* UISearchBar+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Color.swift"; sourceTree = "<group>"; };
+		CAF9EA2E1F4A614000E72501 /* UILabel+AttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+AttributedText.swift"; sourceTree = "<group>"; };
 		EFDA923A2CF667CF528E5EBB /* Pods_HomeAway_Challenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeAway_Challenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -162,7 +164,6 @@
 		CA44CD921F479421009263BE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CAF9EA281F49EDDB00E72501 /* Extensions */,
 				CA44CD621F4793D4009263BE /* AppDelegate.swift */,
 				CAA3E4BA1F48D37F000D06CA /* SeatGeekConnector.swift */,
 				CAF9EA241F49083A00E72501 /* Favorites.swift */,
@@ -173,6 +174,7 @@
 		CA44CD931F479426009263BE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CAF9EA281F49EDDB00E72501 /* Extensions */,
 				CAA3E4BC1F48F1FB000D06CA /* Storyboards */,
 				CAA3E4BD1F48F204000D06CA /* UITableViewCells */,
 			);
@@ -219,6 +221,7 @@
 			children = (
 				CAF9EA261F49EBEE00E72501 /* UIColor+Custom.swift */,
 				CAF9EA291F49EDFA00E72501 /* UISearchBar+Color.swift */,
+				CAF9EA2E1F4A614000E72501 /* UILabel+AttributedText.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				CAF9EA271F49EBEE00E72501 /* UIColor+Custom.swift in Sources */,
 				CA44CD671F4793D4009263BE /* DetailViewController.swift in Sources */,
 				CA44CD651F4793D4009263BE /* MasterViewController.swift in Sources */,
+				CAF9EA2F1F4A614000E72501 /* UILabel+AttributedText.swift in Sources */,
 				CAA3E4BB1F48D37F000D06CA /* SeatGeekConnector.swift in Sources */,
 				CAF9EA251F49083A00E72501 /* Favorites.swift in Sources */,
 				CAF9EA2A1F49EDFA00E72501 /* UISearchBar+Color.swift in Sources */,

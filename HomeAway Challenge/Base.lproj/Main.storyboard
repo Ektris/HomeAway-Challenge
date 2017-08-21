@@ -46,10 +46,17 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vz-1J-SL4">
-                                <rect key="frame" x="16" y="273" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vz-1J-SL4">
+                                <rect key="frame" x="16" y="273" width="343" height="24"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Date:">
+                                        <attributes>
+                                            <color key="NSColor" red="0.25570780040000002" green="0.43653267620000002" blue="0.65664196009999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="20" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ThD-uO-A71">
@@ -58,15 +65,35 @@
                                     <constraint firstAttribute="width" secondItem="ThD-uO-A71" secondAttribute="height" multiplier="16:9" id="GeB-gt-rpo"/>
                                 </constraints>
                             </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdy-Ds-zZ0">
-                                <rect key="frame" x="16" y="302" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdy-Ds-zZ0">
+                                <rect key="frame" x="16" y="305" width="343" height="21"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Location:">
+                                        <attributes>
+                                            <color key="NSColor" red="0.25570780040000002" green="0.43653267620000002" blue="0.65664196009999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFu-aG-c4V">
+                                <rect key="frame" x="16" y="334" width="343" height="21"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Venue:">
+                                        <attributes>
+                                            <color key="NSColor" red="0.25570780040000002" green="0.43653267620000002" blue="0.65664196009999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="NFu-aG-c4V" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="2B1-Xd-QZY"/>
                             <constraint firstItem="ThD-uO-A71" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="7bg-Lx-OiQ"/>
                             <constraint firstItem="7vz-1J-SL4" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" priority="750" constant="8" id="CbW-nd-zon"/>
                             <constraint firstItem="ThD-uO-A71" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="LSX-0t-M4E"/>
@@ -80,6 +107,8 @@
                             <constraint firstItem="Jdy-Ds-zZ0" firstAttribute="top" secondItem="7vz-1J-SL4" secondAttribute="bottom" constant="8" id="nxs-zm-mQ3"/>
                             <constraint firstItem="ThD-uO-A71" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="q4H-5E-vIW"/>
                             <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
+                            <constraint firstItem="NFu-aG-c4V" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="vU5-Ps-CFl"/>
+                            <constraint firstItem="NFu-aG-c4V" firstAttribute="top" secondItem="Jdy-Ds-zZ0" secondAttribute="bottom" constant="8" id="war-Sy-AIQ"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -96,6 +125,7 @@
                         <outlet property="favoriteButton" destination="8eW-JY-Lct" id="9p7-lA-jlz"/>
                         <outlet property="imageView" destination="ThD-uO-A71" id="RwY-1t-cqV"/>
                         <outlet property="locationLabel" destination="Jdy-Ds-zZ0" id="gYL-X9-KxG"/>
+                        <outlet property="venueLabel" destination="NFu-aG-c4V" id="30S-hC-a8s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -134,21 +164,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLD-2X-wFd">
-                                            <rect key="frame" x="91" y="8" width="276" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="91" y="8" width="276" height="24"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJU-UT-Vwx">
-                                            <rect key="frame" x="91" y="37" width="276" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <rect key="frame" x="91" y="42" width="276" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.25570780040000002" green="0.43653267620000002" blue="0.65664196009999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJi-ek-GhI">
-                                            <rect key="frame" x="91" y="66" width="276" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <rect key="frame" x="91" y="69" width="276" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.25570780040000002" green="0.43653267620000002" blue="0.65664196009999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Question_Mark" translatesAutoresizingMaskIntoConstraints="NO" id="Lhe-h8-BlK">
@@ -187,6 +217,7 @@
                                         <constraint firstItem="sLD-2X-wFd" firstAttribute="trailing" secondItem="JK4-ed-1ws" secondAttribute="trailingMargin" id="BgZ-T8-HES"/>
                                         <constraint firstItem="sLD-2X-wFd" firstAttribute="leading" secondItem="Lhe-h8-BlK" secondAttribute="trailing" constant="8" id="DoF-Rv-tXM"/>
                                         <constraint firstItem="FJi-ek-GhI" firstAttribute="leading" secondItem="Lhe-h8-BlK" secondAttribute="trailing" constant="8" id="IB9-2p-tNX"/>
+                                        <constraint firstItem="kJU-UT-Vwx" firstAttribute="top" secondItem="sLD-2X-wFd" secondAttribute="bottom" constant="10" id="Kme-N1-Inu"/>
                                         <constraint firstItem="kJU-UT-Vwx" firstAttribute="trailing" secondItem="JK4-ed-1ws" secondAttribute="trailingMargin" id="MIR-WS-Ssj"/>
                                         <constraint firstItem="FJi-ek-GhI" firstAttribute="leading" secondItem="sLD-2X-wFd" secondAttribute="leading" id="NrL-iq-3dy"/>
                                         <constraint firstItem="FJi-ek-GhI" firstAttribute="trailing" secondItem="sLD-2X-wFd" secondAttribute="trailing" id="PyL-hy-hKc"/>
@@ -194,11 +225,10 @@
                                         <constraint firstItem="FJi-ek-GhI" firstAttribute="trailing" secondItem="JK4-ed-1ws" secondAttribute="trailingMargin" id="a0d-FL-RMS"/>
                                         <constraint firstItem="1h5-ks-jQ5" firstAttribute="trailing" secondItem="Lhe-h8-BlK" secondAttribute="trailing" id="dRD-KU-W4q"/>
                                         <constraint firstItem="Lhe-h8-BlK" firstAttribute="leading" secondItem="JK4-ed-1ws" secondAttribute="leadingMargin" id="frr-At-1ZY"/>
+                                        <constraint firstItem="FJi-ek-GhI" firstAttribute="top" secondItem="kJU-UT-Vwx" secondAttribute="bottom" constant="9" id="gkH-b4-aAB"/>
                                         <constraint firstItem="1h5-ks-jQ5" firstAttribute="top" secondItem="Lhe-h8-BlK" secondAttribute="top" id="hAS-MK-IFL"/>
                                         <constraint firstItem="kJU-UT-Vwx" firstAttribute="trailing" secondItem="sLD-2X-wFd" secondAttribute="trailing" id="hDP-4C-cz1"/>
-                                        <constraint firstItem="FJi-ek-GhI" firstAttribute="top" secondItem="kJU-UT-Vwx" secondAttribute="bottom" constant="8" id="pBU-RO-e5j"/>
                                         <constraint firstItem="kJU-UT-Vwx" firstAttribute="leading" secondItem="sLD-2X-wFd" secondAttribute="leading" id="vkP-ti-Bto"/>
-                                        <constraint firstItem="kJU-UT-Vwx" firstAttribute="top" secondItem="sLD-2X-wFd" secondAttribute="bottom" constant="8" id="yy6-th-6Gy"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -226,7 +256,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OV8-dG-nh4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="-630"/>
+            <point key="canvasLocation" x="708" y="-630.13493253373315"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
