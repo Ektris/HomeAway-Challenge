@@ -10,11 +10,13 @@ import UIKit
 
 class DetailViewController: UIViewController {
     // MARK: - Outlets
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var venueLabel: UILabel!
+    @IBOutlet weak var performersLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
 
     // MARK: - Properties
@@ -42,7 +44,16 @@ class DetailViewController: UIViewController {
         if let event = self.eventDict {
             hideDetails(false)
             
-            self.title = event["title"] as? String
+            let frame = CGRect(x: 0, y: 0, width: (self.navigationController?.navigationBar.frame.width)!,
+                               height: (self.navigationController?.navigationBar.frame.height)!)
+            let titleLabel = UILabel(frame: frame)
+            titleLabel.text = event["title"] as? String
+            titleLabel.textColor = .white
+            titleLabel.backgroundColor = .clear
+            titleLabel.adjustsFontSizeToFitWidth = true
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
+            titleLabel.textAlignment = .center
+            self.navigationItem.titleView = titleLabel
             
             if let imgView = self.imageView {
                 let performers = event["performers"] as! [Dictionary<String, Any>]
@@ -73,6 +84,15 @@ class DetailViewController: UIViewController {
                                            attributes: [NSForegroundColorAttributeName:UIColor.black])
             }
             
+            if let label = self.performersLabel {
+                let performers = event["performers"] as! [Dictionary<String, Any>]
+                var performerNames = [String]()
+                for i in 0..<performers.count {
+                    performerNames.append(performers[i]["name"] as! String)
+                }
+                label.appendAttributedText(text: performerNames.joined(separator: ", "), attributes: [NSForegroundColorAttributeName:UIColor.black])
+            }
+            
             if let button = self.favoriteButton {
                 if Favorites.check(id: event["id"] as! Int) {
                     button.image = UIImage(named: "Star_Filled")
@@ -90,24 +110,12 @@ class DetailViewController: UIViewController {
             self.detailDescriptionLabel.isHidden = !hide
         }
         
-        if self.imageView != nil {
-            self.imageView.isHidden = hide
-        }
-        
-        if self.dateLabel != nil {
-            self.dateLabel.isHidden = hide
-        }
-        
-        if self.locationLabel != nil {
-            self.locationLabel.isHidden = hide
-        }
-        
-        if self.venueLabel != nil {
-            self.venueLabel.isHidden = hide
-        }
-        
         if self.favoriteButton != nil {
             self.favoriteButton.isEnabled = !hide
+        }
+        
+        if self.scrollView != nil {
+            self.scrollView.isHidden = hide
         }
     }
     
