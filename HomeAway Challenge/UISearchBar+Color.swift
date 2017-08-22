@@ -10,6 +10,7 @@ import UIKit
 
 extension UISearchBar
 {
+    // Change the color of the placeholder text
     func placeholderColor(color: UIColor)
     {
         if let textField = self.value(forKey: "searchField") as? UITextField {

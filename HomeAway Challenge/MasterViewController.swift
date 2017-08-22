@@ -35,6 +35,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        // Deselect row when returning from details and not in a split view
         if let path = self.tableView.indexPathForSelectedRow, self.splitViewController!.isCollapsed {
             self.tableView.deselectRow(at: path, animated: animated)
         }
@@ -50,7 +51,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating
     
     func updateSearchResults(for searchController: UISearchController) {
-        // Only want to query if text actually entered, otherwise you get everything when search bar given focus
+        // Only want to query if text is actually entered, otherwise you get everything when the search bar is given focus.
         if let text = searchController.searchBar.text, text.characters.count > 0 {
             self.connector.query(query: searchController.searchBar.text!) { results in
                 self.events = results
@@ -59,23 +60,18 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating {
         } else {
             // Clear results if search bar empty
             self.events.removeAll()
+            self.tableView.reloadData()
         }
-        
-        self.tableView.reloadData()
     }
 
     // MARK: - Table View
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.events.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EventTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventTableViewCell
         
         let event = self.events[indexPath.row]
         
@@ -91,14 +87,14 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating {
         
         cell.favoriteImageView.isHidden = !Favorites.check(id: event["id"] as! Int)
         
-        // Check for an image of the first given performer
+        // Check for an image of the first given performer to present as a preview
         cell.tag = indexPath.row
         let performers = event["performers"] as! [Dictionary<String, Any>]
         if let imageUrl = performers[0]["image"] as? String {
             self.connector.loadImage(url: imageUrl) { image in
                 DispatchQueue.main.async {
                     // Ensure image is assigned to correct cell, as could have scrolled before data was retrieved,
-                    //     so check tag to see if still the one visible at given path
+                    //     so check tag to see if still the right one visible at given path
                     if let cellToUpdate = tableView.cellForRow(at: indexPath) as? EventTableViewCell, cellToUpdate.tag == indexPath.row {
                         cellToUpdate.thumbnail.image = image
                     }
@@ -115,9 +111,9 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating {
         // Get more results if available
         //    If the current number of results is divisible by the page size, then it last pulled down a full page,
         //    which means another page may be available
-        if (indexPath.row + 1) == events.count, (events.count % SeatGeekConnector.pageSize) == 0 {
+        if (indexPath.row + 1) == events.count, (events.count % QueryConstants.pageSize) == 0 {
             self.connector.queryPage(query: searchController.searchBar.text!,
-                                     page: ((events.count / SeatGeekConnector.pageSize) + 1)) { results in
+                                     page: ((events.count / QueryConstants.pageSize) + 1)) { results in
                 self.events = self.events + results
                 let indexPath = self.tableView.indexPathForSelectedRow
                 self.tableView.reloadData()
@@ -141,6 +137,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating {
                 let event = self.events[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.eventDict = event
+                // If using split view, want to refresh the table if a favorite is toggled
                 controller.reloadMaster = {
                     self.tableView.reloadData()
                     self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)

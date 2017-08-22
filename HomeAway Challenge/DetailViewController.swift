@@ -40,11 +40,12 @@ class DetailViewController: UIViewController {
     }
     
     func configureView() {
-        // Update the user interface for the detail item.
         if let event = self.eventDict {
             hideDetails(false)
             
-            let frame = CGRect(x: 0, y: 0, width: (self.navigationController?.navigationBar.frame.width)!,
+            // Want the title to be resizable if the provided event title is too long, so inserting a custom label
+            let frame = CGRect(x: 0, y: 0,
+                               width: (self.navigationController?.navigationBar.frame.width)!,
                                height: (self.navigationController?.navigationBar.frame.height)!)
             let titleLabel = UILabel(frame: frame)
             titleLabel.text = event["title"] as? String
@@ -56,6 +57,8 @@ class DetailViewController: UIViewController {
             self.navigationItem.titleView = titleLabel
             
             if let imgView = self.imageView {
+                // Show an image for one of the performers if available, otherwise hide the image view
+                //     Constraints will pull the other details up so no gap is left
                 let performers = event["performers"] as! [Dictionary<String, Any>]
                 if let imageUrl = performers[0]["image"] as? String {
                     self.connector.loadImage(url: imageUrl) { image in
@@ -106,6 +109,7 @@ class DetailViewController: UIViewController {
     }
     
     func hideDetails(_ hide: Bool) {
+        // Switch between showing details and preview prompt to select an event (as seen in split view)
         if self.detailDescriptionLabel != nil {
             self.detailDescriptionLabel.isHidden = !hide
         }
@@ -131,6 +135,8 @@ class DetailViewController: UIViewController {
                 self.favoriteButton.image = UIImage(named: "Star_Filled")
                 Favorites.save(id: id)
             }
+            
+            // Let the master view know a favorite was toggled so its data can be reloaded and the table updated
             reloadMaster!()
         }
     }

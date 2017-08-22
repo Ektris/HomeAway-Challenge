@@ -18,6 +18,7 @@
 		CA44CD851F4793D5009263BE /* HomeAway_ChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA44CD841F4793D5009263BE /* HomeAway_ChallengeUITests.swift */; };
 		CAA3E4BB1F48D37F000D06CA /* SeatGeekConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA3E4BA1F48D37F000D06CA /* SeatGeekConnector.swift */; };
 		CAA3E4C01F48F25D000D06CA /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA3E4BE1F48F25D000D06CA /* EventTableViewCell.swift */; };
+		CAD730DB1F4BB03800D85E1D /* QueryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD730DA1F4BB03800D85E1D /* QueryConstants.swift */; };
 		CAF9EA251F49083A00E72501 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9EA241F49083A00E72501 /* Favorites.swift */; };
 		CAF9EA271F49EBEE00E72501 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9EA261F49EBEE00E72501 /* UIColor+Custom.swift */; };
 		CAF9EA2A1F49EDFA00E72501 /* UISearchBar+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9EA291F49EDFA00E72501 /* UISearchBar+Color.swift */; };
@@ -60,6 +61,7 @@
 		CA44CD861F4793D5009263BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAA3E4BA1F48D37F000D06CA /* SeatGeekConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatGeekConnector.swift; sourceTree = "<group>"; };
 		CAA3E4BE1F48F25D000D06CA /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		CAD730DA1F4BB03800D85E1D /* QueryConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryConstants.swift; sourceTree = "<group>"; };
 		CAF9EA241F49083A00E72501 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		CAF9EA261F49EBEE00E72501 /* UIColor+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
 		CAF9EA291F49EDFA00E72501 /* UISearchBar+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Color.swift"; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				CA44CD941F479430009263BE /* Controllers */,
 				CA44CD921F479421009263BE /* Models */,
 				CA44CD931F479426009263BE /* Views */,
+				CAF9EA281F49EDDB00E72501 /* Extensions */,
 				CA44CD951F47943E009263BE /* Assets */,
 			);
 			path = "HomeAway Challenge";
@@ -167,6 +170,7 @@
 				CA44CD621F4793D4009263BE /* AppDelegate.swift */,
 				CAA3E4BA1F48D37F000D06CA /* SeatGeekConnector.swift */,
 				CAF9EA241F49083A00E72501 /* Favorites.swift */,
+				CAD730DA1F4BB03800D85E1D /* QueryConstants.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -174,7 +178,6 @@
 		CA44CD931F479426009263BE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CAF9EA281F49EDDB00E72501 /* Extensions */,
 				CAA3E4BC1F48F1FB000D06CA /* Storyboards */,
 				CAA3E4BD1F48F204000D06CA /* UITableViewCells */,
 			);
@@ -427,6 +430,7 @@
 				CAF9EA251F49083A00E72501 /* Favorites.swift in Sources */,
 				CAF9EA2A1F49EDFA00E72501 /* UISearchBar+Color.swift in Sources */,
 				CAA3E4C01F48F25D000D06CA /* EventTableViewCell.swift in Sources */,
+				CAD730DB1F4BB03800D85E1D /* QueryConstants.swift in Sources */,
 				CA44CD631F4793D4009263BE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

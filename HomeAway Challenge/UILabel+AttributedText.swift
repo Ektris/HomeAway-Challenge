@@ -10,6 +10,7 @@ import UIKit
 
 extension UILabel
 {
+    // Append a new attributed string to the current label text
     func appendAttributedText(text: String, attributes: [String:Any])
     {
         let title = self.attributedText as! NSMutableAttributedString

@@ -11,12 +11,9 @@ import Alamofire
 import AlamofireImage
 
 class SeatGeekConnector {
-    // Create singleton to persist across app
+    // Create singleton to use across app
     public static let shared = SeatGeekConnector()
-    public static let pageSize = 10
-    
-    private let clientId = "ODU2ODIwMXwxNTAzMTE3NTgwLjgy"
-    
+
     private init() {
     }
     
@@ -27,14 +24,13 @@ class SeatGeekConnector {
     }
     
     public func queryPage(query: String, page: Int, completion: @escaping ([Dictionary<String, Any>]) -> ()) {
-        let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-        let url = "https://api.seatgeek.com/2/events?client_id=\(clientId)&q=\(encodedQuery!)"
-        let params: [String: Any] = ["client_id": clientId,
-                                     "q":encodedQuery!,
+        let url = "https://api.seatgeek.com/2/events"
+        let params: [String: Any] = ["client_id": QueryConstants.clientId,
+                                     "q":query,
                                      "page":page]
         
-        Alamofire.request(url, method: .get, parameters: params, headers: nil).responseJSON { response in
-            if let json = response.result.value as? Dictionary<String, Any> {                
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default).responseJSON { response in
+            if let json = response.result.value as? Dictionary<String, Any> {
                 if let events = json["events"] as? [Dictionary<String, Any>] {
                     completion(events)
                 }
